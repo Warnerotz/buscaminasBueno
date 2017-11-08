@@ -1,16 +1,22 @@
-import{casilla} from "casilla.js";
+import {Casilla} from "./casilla.js";
 
 
 
-export function crearTablero() {
+export function crearTablero(longitud) {
         //creamos la tabla y le asignamos las clases y atributos q necesitemos
+        var arrayCasillas = [];
         var div = document.createElement("div");
         var tabla = document.createElement("table");
         tabla.setAttribute("id", "tablaTablero");
         //bucle para introducir filas y columnas.
         for (var i = 0; i < longitud; i++) {
-            var fila = document.createElement("tr");
-            for (var j = 0; j < longitud; j++) {
+            ArryCasillas[i]=[]
+            var fila = document.createElement("tr");           for (var j = 0; j < longitud; j++) {
+                //crea el objeto
+                var nomCasilla ="casilla"+i+j;
+                nomCasilla = 
+                    new Casilla(i,j,0,"img/facingDown.png");
+                //-----------------
                 var columna = document.createElement("td");
                 columna.setAttribute("id", i + "_" + j);
                 columna.setAttribute("class", "celdas");
@@ -21,12 +27,15 @@ export function crearTablero() {
                 columna.appendChild(DOM_img);
                 //hacemos que el td cuelgue de la fila.
                 fila.appendChild(columna);
+                //meto el objeto en el array
+                arrayCasillas[i][j] = nomCasilla;
             }
             tabla.appendChild(fila);
         }
-
+        
         document.getElementById("tablero").appendChild(tabla);
         crearListeners();
+        return arrayCasillas;
     }
 
 
@@ -40,21 +49,5 @@ export function crearListeners() {
     }
 
 
-export function comprobarNivel() {
-
-    switch (nivel) {
-        case 1:
-            longitud = 9;
-            numBombas = 10;
-
-            break;
-        case 2:
-            longitud = 10;
-            numBombas = 15
-            break;
-    }
-
-    casillasNoBomba = (longitud * longitud) - numBombas;
-}
 
 

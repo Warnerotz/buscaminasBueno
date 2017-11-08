@@ -1,9 +1,9 @@
 {
-  "name": "buscaminas",
+  "name": "prueba",
   "version": "1.0.0",
-  "description": "Buscaminas ES6",
+  "description": "asdf",
   "repository": "No repository yet",
-  "author": "Adrian Martinez",
+  "author": "asdf",
   "license": "MIT",
   "dependencies": {
     "lodash": "^4.17.4"
