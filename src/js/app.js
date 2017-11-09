@@ -6,35 +6,51 @@ import * as rellenarMinas from './rellenarMinas.js';
 
 import * as tablero from './tablero.js';
 
-import crearImagenes from './imagenes.js'
+import * as imagenes from './imagenes.js'
+
+// variable que mide el numero de filas y columnas del buscaminas
+    export var longitud = 0;
+
+// variable que recoge los espacios vacios descubiertos
+    export var casillasNoBomba = 0;
+
+ // variable para la matriz con la que creamos el tablero de juego
+    export var matriz = [];
+
+// variable que recoge el numero de bombas
+    export var numBombas = 0;
+   
+
+    // variable que recoge el numero de bombas acertadas
+    export var numAciertos = 0;
 
 window.onload = function () {
     //variable que controla el nivel de dificultad
     var nivel = 0;
-    // variable que mide el numero de filas y columnas del buscaminas
-    var longitud = 0;
-    // variable que recoge el numero de bombas
-    var numBombas = 0;
-    // variable para la matriz con la que creamos el tablero de juego
-    var matriz = [];
+    
+    
 
-    // variable que recoge el numero de bombas acertadas
-    var numAciertos = 0;
-
-    // variable que recoge los espacios vacios descubiertos
-    var casillasNoBomba = 0;
+    
 
     //array de imagenes
-    var arrayImg = [];
+//    var arrayImg = [];
 
     //funcion que crea las imagenes
-    crearImagenes();
-    arrayImg = crearImagenes();
+    imagenes.crearImagenes();
+    
     //listener para el nivel principiante que llama a la funcion crearTablero y le manda el numero de filas y columnas.
-    document.getElementById("prin").addEventListener("click", iniciarJuego, false)
-    document.getElementById("inter").addEventListener("click", iniciarJuego, false)
+    document.getElementById("prin").addEventListener("click", iniciarJuego, false);
+    document.getElementById("inter").addEventListener("click", iniciarJuego, false);
+      // evento para reiniciar el juego
+    document.getElementById("volver").addEventListener('click', reiniciarJuego, false);
+    
+    document.getElementById("finJuego").style.display = "none";
+    
 
     function iniciarJuego() {
+        
+        document.getElementById("Principiante").style.display = "none";
+        document.getElementById("Intermedio").style.display = "none";
 
         if (this.id == "prin") {
             nivel = 1;
@@ -46,12 +62,16 @@ window.onload = function () {
         comprobarNivel();
         matriz = rellenarMinas.iniMatrizMinas(longitud);
         matriz = rellenarMinas.generadorBombas(matriz, numBombas, longitud);
-        comprobarMinasAl();
-        var casillas= tablero.crearTablero(longitud);
-        crearTablero();
+        
+        tablero.crearTablero(longitud);
+        //le paso el array x referencia xq sino no lo coje al venir de un import.
+        tablero.arrayCasillas= comprobarMinasAl(tablero.arrayCasillas);
+
+        crearTablero(longitud);
         
         
-        function crearTablero() {
+        
+        function crearTablero(longitud) {
             //creamos la tabla y le asignamos las clases y atributos q necesitemos
             var div = document.createElement("div");
             var tabla = document.createElement("table");
@@ -126,16 +146,26 @@ window.onload = function () {
     }
 
     //funcion que recorre todo el array y en cada casilla comprobamos cuantas bombas tiene alrededor
-    function comprobarMinasAl() {
-
+    function comprobarMinasAl(casillas) {
+               
         for (var i = 0; i < longitud; i++) {
             for (var j = 0; j < longitud; j++) {
                 if (matriz[i][j] != "*") {
                     matriz[i][j] = calcularBombasAlrededor(i, j);
+                    casillas[i][j].valor = matriz[i][j];
+                    
+                }else{
+                   casillas[i][j].valor = "*"; 
                 }
             }
         }
+        
+        return casillas;
     }
+
+     function reiniciarJuego () {
+            window.location.reload();
+        }   
 
 
 
@@ -250,21 +280,9 @@ window.onload = function () {
         }
 
 
-        function clickIzquierdo(event) {
-            var evento = event || window.Event;
+        
 
-            if (evento.button == 0 && (document.getElementById("imagen-" + this.id).src == blanco.src)) {
-                var coorMatriz = this.id.split("_");
-                var x = coorMatriz[0];
-                var y = coorMatriz[1];
-                mostrarTablero(x, y);
-
-            }
-
-
-        }
-
-        function clickDerecho(event) {}
+        
 
         function mostrarTablero(coordX, coordY) {
             if (coordX >= 0 && coordX < longitud && coordY >= 0 && coordY < longitud && (document.getElementById("imagen-" + coordX + "_" + coordY).src == blanco.src)) {

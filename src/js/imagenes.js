@@ -1,22 +1,22 @@
 
+export var blanco;
+export var bandera;
+export var fallo;
+export var valor0;
+export var valor1;
+export var valor2;
+export var valor3;
+export var valor4;
+export var valor5;
+export var valor6;
+export var valor7;
+export var valor8;
+export var arrayImg=[];
 
-
-
-function crearImagenes() {
+export function crearImagenes() {
      //variables para las imagenes
-    var blanco;
-    var bandera;
-    var fallo;
-    var valor0;
-    var valor1;
-    var valor2;
-    var valor3;
-    var valor4;
-    var valor5;
-    var valor6;
-    var valor7;
-    var valor8;
-    var arrayImg=[];
+
+    
     blanco = new Image;
     blanco.src = "img/facingDown.png";
     arrayImg[0] =blanco;
@@ -68,8 +68,8 @@ function crearImagenes() {
     valor8.src = "img/8.png";
     arrayImg[11] = valor8;
     
-    return arrayImg;
+    //return arrayImg;
  
 }
 
-export default crearImagenes;
+

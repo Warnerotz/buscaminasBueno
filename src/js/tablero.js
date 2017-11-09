@@ -1,17 +1,18 @@
 import {Casilla} from "./casilla.js";
+import * as click from "./clicks.js";
 
-
-
+export var arrayCasillas=[];
 export function crearTablero(longitud) {
         //creamos la tabla y le asignamos las clases y atributos q necesitemos
-        var arrayCasillas = [];
+        
         var div = document.createElement("div");
         var tabla = document.createElement("table");
         tabla.setAttribute("id", "tablaTablero");
         //bucle para introducir filas y columnas.
         for (var i = 0; i < longitud; i++) {
-            ArryCasillas[i]=[]
-            var fila = document.createElement("tr");           for (var j = 0; j < longitud; j++) {
+            arrayCasillas[i]=[]
+            var fila = document.createElement("tr");
+            for (var j = 0; j < longitud; j++) {
                 //crea el objeto
                 var nomCasilla ="casilla"+i+j;
                 nomCasilla = 
@@ -31,19 +32,24 @@ export function crearTablero(longitud) {
                 arrayCasillas[i][j] = nomCasilla;
             }
             tabla.appendChild(fila);
+            
         }
         
+        
         document.getElementById("tablero").appendChild(tabla);
-        crearListeners();
-        return arrayCasillas;
+        crearListeners(longitud);
+        //return arrayCasillas;
+    
+    
+        
     }
 
 
-export function crearListeners() {
+export function crearListeners(longitud) {
         for (var i = 0; i < longitud; i++) {
             for (var j = 0; j < longitud; j++) {
-                document.getElementById(i + "_" + j).addEventListener('click', clickIzquierdo, false);
-                document.getElementById(i + "_" + j).addEventListener('contextmenu', clickDerecho, false);
+                document.getElementById(i + "_" + j).addEventListener('click', click.clickIzquierdo, false);
+                document.getElementById(i + "_" + j).addEventListener('contextmenu', click.clickDerecho, false);
             }
         }
     }

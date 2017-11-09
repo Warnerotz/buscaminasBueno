@@ -1,20 +1,17 @@
 export class Casilla{
-    
     constructor(coordX,coordY,valor,src){
-        this.coordX = x;
-        this.coordY = y;
+        this.coordX = coordX;
+        this.coordY = coordY;
         this.valor = valor;
         this.src = src;
         
     }
-    
+/*    
     //----GETERS------//
-    
     get coordX(){
         
         return this.coordX;
     }
-    
     get coordY(){
         
         return this.coordY;
@@ -26,16 +23,21 @@ export class Casilla{
         return this.valor;
         
     }
-    
-    
     get src(){
         
         return this.src;
         
     }
-    
     //----SETERS----//
+    set CoordX(coordX){
+        this.coordX = coordX;
+        
+    }
     
+    set CoordY(coordY){
+        this.CoordY = CoordY;
+        
+    }
     
     set valor(valor){
         
@@ -47,5 +49,5 @@ export class Casilla{
         this.src = src;
         
     }
-    
+ */   
 }
