@@ -15,29 +15,24 @@
             <div class="row" id="titulo">
 
                 <div class="col-md-3">
-<!--                    <img src="img/bomb.png" alt="bomba" id="imgBomba">-->
+
                 </div>
 
                 <div class="col-md-6">
                     <h1>Buscaminas</h1>
 
                 </div>
-<!--
-                <div class="col-md-3">
-                    <img src="img/explosion.png" alt="explosion" id="imgexpl">
-                </div>
--->
             </div>
             <div class="row centVer" id="Principiante">
                 <div class="col-md-3"></div>
                 <div class="col-md-6" id="divPrinc">
-                    <button type="button" class="btn  btn-outline-success btn-block" id="prin" value="Jugar">Principiante</button>
+                    <button type="button" class="btn  btn-outline-primary btn-block" id="prin" value="Jugar">Principiante</button>
                 </div>
             </div>
             <div class="row centVer" id="Intermedio">
                 <div class="col-md-3"></div>
                 <div class="col-md-6" id="divInt">
-                    <button type="button" class="btn  btn-outline-success btn-block" id="inter" value="multi">Intermedio</button>
+                    <button type="button" class="btn  btn-outline-primary btn-block" id="inter" value="multi">Intermedio</button>
                 </div>
 
             </div>
@@ -47,7 +42,16 @@
 
         <div class="container-fluid" id="pantallaJuego">
             <div class="row" id="divTablero">
-                <div class="col-md-3"></div>
+                <div id="cronometro" class="col-md-3">
+                   <div class="row">
+                       <h4 id="titCrono">Cronometro</h4>
+                       
+                   </div>
+                    <div class="row">
+                        <p id="crono">
+                        <span id="minutos"></span>:<span id="segundos"></span></p>
+                    </div>
+                </div>
                 <div class="col-md-6" id="tablero">
                     
                     
@@ -70,7 +74,7 @@
             <div class="row centVer">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
-                    <button type="button" class="btn  btn-outline-success btn-block" id="volver" value="multi">Volver a jugar</button>
+                    <button type="button" class="btn  btn-outline-primary btn-block" id="volver" value="multi">Volver a jugar</button>
                 </div>
 
             </div>

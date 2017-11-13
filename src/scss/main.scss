@@ -15,7 +15,7 @@
 
 #cuerpo{
     
-    background-color: burlywood;
+    background-color: #F5E3A0;
 }
 
 #todo{
@@ -47,4 +47,25 @@ img{
 
 #mensaje{
     text-align: center;
+}
+
+#cronometro{
+    
+    display:none;
+}
+
+#titCrono{
+        margin: 0 auto;
+    margin-bottom: 2%;
+    
+}
+
+#crono{
+    width: 277px;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    border: 2px solid black;
+    border-radius: 10px;
+    
 }

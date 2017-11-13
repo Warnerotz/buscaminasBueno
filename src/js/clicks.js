@@ -6,6 +6,8 @@ import * as imagenes from './imagenes.js'
 
 import * as principal from './app.js';
 
+var cronometro;
+
 export function clickIzquierdo(event) {
     var evento = event || window.Event;
     if (evento.button == 0 && (document.getElementById("imagen-" + this.id).src == imagenes.blanco.src)) {
@@ -35,8 +37,8 @@ export function clickDerecho(elEvento) {
             principal.numAciertos++;
         }
 
-    } else if (document.getElementById("imagen-" + this.id).src == bandera.src) {
-        document.getElementById("imagen-" + this.id).src = blanco.src;
+    } else if (document.getElementById("imagen-" + this.id).src == imagenes.bandera.src) {
+        document.getElementById("imagen-" + this.id).src = imagenes.blanco.src;
         // cuando quita la bandera teneoms que comprobar si habiamos añadido un acieto para restarselo
         if (principal.matriz[x][y] == "*") {
             principal.numAciertos--;
@@ -57,6 +59,7 @@ export function clickDerecho(elEvento) {
 // funcion que evalua como hemos acabado (1 acertado, 0 fallo)
 export function finJuego(x) {
     var texto = "JUEGO COMPLETADO";
+    detenerCrono();
     // impedimos que pueda clickar sobre el tablero al acabar
     for (var i = 0; i < principal.longitud; i++) {
         for (var j = 0; j < principal.longitud; j++) {
@@ -159,3 +162,41 @@ function expandirCasilla(x, y) {
     }
 
 }
+
+
+
+export function crono() {
+        var contador_s = 0;
+        var contador_m = 0;
+        var segundos = document.getElementById("segundos");
+        var minutos = document.getElementById("minutos");
+
+        minutos.innerHTML = 0;
+        segundos.innerHTML = 0;
+
+        cronometro = setInterval(function () {
+            if (contador_s == 60) {
+
+                contador_s = 0;
+                contador_m++;
+                minutos.innerHTML = contador_m;
+                if (contador_m == 60) {
+                    contador_m = 0;
+
+                }
+            }
+
+            segundos.innerHTML = contador_s;
+            contador_s++;
+
+
+
+        }, 1000);
+
+
+    }
+
+  function detenerCrono(){
+        clearInterval(cronometro);
+        
+    }
